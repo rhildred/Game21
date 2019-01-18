@@ -9,21 +9,22 @@ class Game21{
     takeTurn(sInput){
         let aNumbers = sInput.split(",");
         let nCurrent = aNumbers[aNumbers.length - 1];
-        if(nCurrent >= 21){
-            return("I win");
-        }else if(this.nComputer >= nCurrent){
-            return("please try again starting at " + (this.nComputer + 1));
+        if(nCurrent <= this.nComputer){
+            return("Please enter a sequence starting at "  + (this.nComputer + 1));
         }else if(aNumbers.length > 4){
-            return("please enter 4 or fewer numbers starting at " + (this.nComputer + 1));
+            return("Please enter 4 or fewer numbers starting at "  + (this.nComputer + 1))
         }
-        for(let n = 0; n< aNumbers.length; n++){
+        for(let n = 0; n < aNumbers.length; n++){
             if(isNaN(aNumbers[n])){
-                return("Please enter only numbers starting at " + (this.nComputer + 1));
-            }else if(n > 0 && aNumbers[n] - aNumbers[n-1] != 1){
-                return("Please enter numbers in sequence starting at " + (this.nComputer + 1));
+                return("Please enter only numbers in a sequence starting at "  + (this.nComputer + 1))
             }else if(n == 0 && aNumbers[n] != this.nComputer + 1){
-                return("Please enter numbers in sequence starting at " + (this.nComputer + 1));                
+                return("Please enter a sequence starting at "  + (this.nComputer + 1));
+            }else if( n != 0 && aNumbers[n] - aNumbers[n-1] != 1){
+                return("Please enter a sequence starting at "  + (this.nComputer + 1));
             }
+        }
+        if(nCurrent >= 21){
+            return("I win!")
         }
         let sSequence = "" + ++nCurrent;
         if(nCurrent == 21){
